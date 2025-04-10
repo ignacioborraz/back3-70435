@@ -5,13 +5,15 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node ./index.js",
-    "dev": "node --watch ./index.js"
+    "start": "node ./index.js --mode=prod",
+    "dev": "node --watch ./index.js",
+    "test": "node ./index.js --mode=test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "commander": "^13.1.0",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
     "mongoose": "^8.13.2"
