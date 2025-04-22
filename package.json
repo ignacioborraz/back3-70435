@@ -16,6 +16,7 @@
     "commander": "^13.1.0",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
+    "express-compression": "^1.0.2",
     "mongoose": "^8.13.2"
   }
 }
