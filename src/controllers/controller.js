@@ -1,6 +1,6 @@
 import CustomError from "../helpers/errors/CustomError.js";
 import errors from "../helpers/errors/errors.js";
-import { productsService } from "../services/service.js";
+import { productsService, usersService } from "../services/service.js";
 
 class Controller {
   constructor(service) {
@@ -48,4 +48,5 @@ class Controller {
 }
 
 const productsController = new Controller(productsService);
-export { productsController };
+const usersController = new Controller(usersService);
+export { productsController, usersController };
