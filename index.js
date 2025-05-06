@@ -1,5 +1,6 @@
 import "./src/helpers/env.js";
 import express from "express";
+import cookieParser from "cookie-parser";
 import compression from "express-compression";
 import dbConnect from "./src/helpers/dbConnect.helper.js";
 import indexRouter from "./src/routers/index.router.js";
@@ -18,6 +19,7 @@ server.listen(port, ready);
 
 /* middlewares settings */
 server.use(compression({ brotli: { enabled: true, zlib: {} } }));
+server.use(cookieParser());
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(express.static("public"));

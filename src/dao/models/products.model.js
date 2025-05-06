@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, Types, model } from "mongoose";
 
 const collection = "products";
 const schema = new Schema(
@@ -10,9 +10,14 @@ const schema = new Schema(
     price: { type: Number, default: 10 },
     stock: { type: Number, default: 10 },
     onsale: { type: Boolean, default: false },
+    owner_id: { type: Types.ObjectId, ref: "users", index: true },
   },
   { timestamps: true }
 );
+
+schema.pre(/^find/, function () {
+  this.populate("owner_id", "email avatar");
+});
 
 const Product = model(collection, schema);
 export default Product;

@@ -1,5 +1,3 @@
-import CustomError from "../helpers/errors/CustomError.js";
-import errors from "../helpers/errors/errors.js";
 import { productsService, usersService } from "../services/service.js";
 
 class Controller {
