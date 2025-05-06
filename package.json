@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "calculator-70435": "^2.2.0",
     "commander": "^13.1.0",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
