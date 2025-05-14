@@ -2,7 +2,7 @@
 FROM node
 
 # establecemos el nombre de la app / directorio de trabajo
-WORKDIR /coderserver-70435
+WORKDIR /codercommerce
 
 # copiamos los archivos de la aplicación al contenedor
 COPY package.json ./

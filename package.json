@@ -12,12 +12,12 @@
     "artillery-muchos": "artillery quick --count 500 --num 2 'http://localhost:8080/api/sumar/muchos' -o ./test/artillery/muchos.json",
     "artillery-flujo": "artillery run ./test/artillery/flow/config.yaml -o ./test/artillery/flow/flujo.json",
     "artillery-reporte": "artillery report ./test/artillery/flow/flujo.json",
-    "build-image": "docker build -t codercommerce-70435 .",
-    "image": "docker run -p 7000:9000 codercommerce-70435",
-    "retag-image": "docker tag codercommerce-70435 ignacioborraz/codercommerce:1.0.0",
+    "build-image": "docker build -t codercommerce .",
+    "image": "docker run -p 7000:9000 codercommerce",
+    "retag-image": "docker tag codercommerce ignacioborraz/codercommerce:1.0.0",
     "push-image": "docker push ignacioborraz/codercommerce:1.0.0",
     "apply-manifest": "kubectl apply -f manifest.yaml",
-    "service-minikube": "minikube service codercommerce-service"
+    "service-mini": "minikube service codercommerce-service"
   },
   "keywords": [],
   "author": "",
