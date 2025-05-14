@@ -1,0 +1,50 @@
+# Versión de la API de Kubernetes usada para deployments
+apiVersion: apps/v1
+# Tipo de recurso: Deployment (maneja los Pods)
+kind: Deployment
+metadata:
+  # Nombre del deployment
+  name: codercommerce-deploy
+
+spec:
+  # Número de Pods (instancias del contenedor)
+  replicas: 5
+  # Selecciona Pods que tengan esta etiqueta
+  selector:
+    matchLabels:
+      app: codercommerce
+  # Define cómo deben ser los Pods creados por este deployment
+  template:
+    metadata:
+      labels:
+        # Etiqueta que usará el Pod (debe coincidir con el selector arriba)
+        app: codercommerce
+    spec:
+      containers:
+        # Nombre interno del contenedor
+        - name: commerce
+          image: ignacioborraz/codercommerce:1.0.0
+          ports:
+            # Puerto que escucha dentro del contenedor
+            - containerPort: 9000
+---
+# Versión de la API de Kubernetes usada para services
+apiVersion: v1
+# Tipo de recurso: Service (puente entre red interna y externa)
+kind: Service
+metadata:
+  # Nombre del servicio
+  name: codercommerce-service
+spec:
+  # Tipo de servicio: lo expone en un puerto del nodo (externo)
+  type: NodePort
+  selector:
+    # Selecciona los Pods con la etiqueta `app: codercommerce`
+    app: codercommerce
+  ports:
+      # Puerto que expone dentro del clúster
+    - port: 9000
+      # Puerto al que redirige dentro del contenedor
+      targetPort: 9000
+      # Puerto externo accesible desde el host (localhost:9000)
+      nodePort: 30003
