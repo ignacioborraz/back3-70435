@@ -49,7 +49,7 @@ describe("TESTING: Servicio de Productos", () => {
     });
     assert.ok(typeof response.onsale === "boolean");
   });
-  it("Se no debe crear un producto cuando no me pasan datos correctos", async () => {
+  it("No se debe crear un producto cuando no me pasan datos correctos", async () => {
     try {
       await productsManager.createOne({});
     } catch (error) {
@@ -69,7 +69,7 @@ describe("TESTING: Servicio de Productos", () => {
     const response = await productsManager.readById(productId);
     assert.ok(response._id);
   });
-  it("Se debe modificar un produto de la base de datos", async () => {
+  it("Se debe modificar un producto de la base de datos", async () => {
     const response = await productsManager.updateById(productId, {
       stock: 1000,
     });
