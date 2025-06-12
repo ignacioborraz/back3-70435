@@ -1,0 +1,149 @@
+components:
+  schemas:
+    User:
+      type: Object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        role:
+          type: string
+      example:
+        email: test@test.com
+        password: hola1234
+        role: USER
+  otherschemas:
+    Login:
+      type: Object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+      example:
+        email: test@test.com
+        password: hola1234
+  responses:
+    register:
+      type: object
+      properties:
+        response:
+          type: string
+        message:
+          type: string
+      example:
+        response: 67af8a844185a5fd2e2a2438
+        message: User Registered!
+    login:
+      type: object
+      properties:
+        response:
+          type: string
+        message:
+          type: string
+      example:
+        response: 67af8a844185a5fd2e2a2438
+        message: User logged in!
+    signout:
+      type: object
+      properties:
+        response:
+          type: string
+        message:
+          type: string
+      example:
+        response: 67af8a844185a5fd2e2a2438
+        message: User signed out!
+    badauth:
+      type: object
+      properties:
+        error:
+          type: string
+        method:
+          type: string
+        ulr:
+          type: string
+      example:
+        error: Bad Auth
+        method: POST
+        url: /api/auth/login
+    forbidden:
+      type: object
+      properties:
+        error:
+          type: string
+        method:
+          type: string
+        ulr:
+          type: string
+      example:
+        error: Forbidden
+        method: POST
+        url: /api/auth/login
+    fatal:
+      type: object
+      properties:
+        error:
+          type: string
+        method:
+          type: string
+        ulr:
+          type: string
+      example:
+        error: Server Error
+        method: POST
+        url: /api/auth/login
+paths:
+  /api/auth/register:
+    post:
+      summary: Para registrar un usuario
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        201:
+          description: Exito en la creacion
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/register'
+        401:
+          description: Bad Auth - Invalid Credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/badauth'
+        500:
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/fatal'
+  /api/auth/login:
+    post:
+      summary: Para iniciar sesión
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/otherschemas/Login'
+  /api/users:
+    put:
+      summary: Para actualizar los datos de un usuario
+      tags:
+        - User
+    delete:
+      summary: Para eliminar un usuario
+      tags:
+        - User
